@@ -34,12 +34,20 @@ a {
 }
 
 :root {
+  --font-serif: Charter, 'Bitstream Charter', Georgia, serif;
+  --color-text: oklch(0.25 0 0);
+  --color-text-secondary: oklch(0.55 0 0);
+  --color-text-muted: oklch(0.75 0 0);
+  --color-action: oklch(0.55 0 0);
+
+  font-family: var(--font-serif);
   font-size: 16px;
   font-weight: 400;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
+  color: var(--color-text);
   text-rendering: optimizeLegibility;
 
   font-synthesis: none;
