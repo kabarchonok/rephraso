@@ -1,5 +1,6 @@
 <script lang='ts'>
   import type { RandomPhrase } from '../stores/state'
+  import Action from '../components/Action.svelte'
   import State from '../components/State.svelte'
   import { getUrl } from '../stores/router'
   import { getRandomPhrase } from '../stores/state'
@@ -12,7 +13,12 @@
   })
 
   function updatePhrase() {
-    phrase = getRandomPhrase(categoryId)
+    try {
+      phrase = getRandomPhrase(categoryId)
+    }
+    catch {
+      phrase = undefined
+    }
   }
 </script>
 
@@ -20,7 +26,7 @@
   {#if !phrase}
     <State emoji='(X_X)' title='Whops! There is some error'>
       {#snippet actions()}
-        <a class='phrase__action' href={getUrl('home')}>return to categories</a>
+        <Action class='phrase__action' href={getUrl('home')}>return to categories</Action>
       {/snippet}
     </State>
   {:else}
@@ -29,11 +35,11 @@
       <div class='phrase__text'>{phrase.text}</div>
 
       <div class='phrase__actions'>
-        <a class='phrase__action' onclick={updatePhrase} href={getUrl({
+        <Action class='phrase__action' onclick={updatePhrase} href={getUrl({
           route: 'phrase',
           params: { categoryId: phrase.categoryId },
-        })}>rephraso!</a>
-        <a class='phrase__action' href={getUrl('home')}>return to categories</a>
+        })}>rephraso!</Action>
+        <Action class='phrase__action' href={getUrl('home')}>return to categories</Action>
       </div>
     </div>
   {/if}
@@ -52,7 +58,7 @@
 
     .phrase__category {
         font-size: 16px;
-        color: oklch(0.85 0 0);
+        color: var(--color-text-muted);
     }
 
     .phrase__text {
@@ -75,7 +81,6 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
-        color: oklch(0.55 0 0);
+        color: var(--color-text-secondary);
     }
-
 </style>

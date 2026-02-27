@@ -1,5 +1,6 @@
 <script lang='ts'>
   import type { Category } from '../stores/state'
+  import Action from '../components/Action.svelte'
   import State from '../components/State.svelte'
   import { getUrl } from '../stores/router'
   import { fillState } from '../stores/state'
@@ -11,23 +12,23 @@
   {#if !categories.length}
     <State emoji='¯\_(ツ)_/¯' title="Seems you haven't any categories">
       {#snippet actions()}
-        <button class='not-found__action-link' onclick={fillState}>create new ones</button>
+        <Action class='not-found__action-link' onclick={fillState}>create new ones</Action>
       {/snippet}
     </State>
   {:else}
     <ul class='categories__list list'>
       {#each categories as category}
         <li class='list__item'>
-          <a class='list__item-link' href={getUrl({
+          <Action class='list__item-link' href={getUrl({
             route: 'phrase',
             params: { categoryId: category.id },
-          })}>{category.name}</a>
+          })}>{category.name}</Action>
         </li>
       {/each}
     </ul>
 
     <div class='actions'>
-      <a class='actions__link' href={getUrl('edit')}>edit categories</a>
+      <Action class='actions__link' href={getUrl('edit')}>edit categories</Action>
     </div>
   {/if}
 </div>
@@ -63,11 +64,7 @@
     margin: auto 0 0 0;
   }
 
-  .actions__link {
-    color: oklch(0.75 0 0);
-  }
-
-  .not-found__action-link {
-    text-decoration: none;
+  .actions :global(.actions__link) {
+    color: var(--color-text-muted);
   }
 </style>

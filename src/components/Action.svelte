@@ -14,3 +14,12 @@
     {@render children()}
   </button>
 {/if}
+
+<style>
+  .action {
+    touch-action: manipulation;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+  }
+</style>
