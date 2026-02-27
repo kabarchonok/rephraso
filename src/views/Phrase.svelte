@@ -9,12 +9,17 @@
   let phrase = $state<RandomPhrase>()
 
   $effect(() => {
-    updatePhrase()
-  })
-
-  function updatePhrase() {
     try {
       phrase = getRandomPhrase(categoryId)
+    }
+    catch {
+      phrase = undefined
+    }
+  })
+
+  function refreshPhrase() {
+    try {
+      phrase = getRandomPhrase(categoryId, phrase?.phraseIndex)
     }
     catch {
       phrase = undefined
@@ -35,10 +40,7 @@
       <div class='phrase__text'>{phrase.text}</div>
 
       <div class='phrase__actions'>
-        <Action class='phrase__action' onclick={updatePhrase} href={getUrl({
-          route: 'phrase',
-          params: { categoryId: phrase.categoryId },
-        })}>rephraso!</Action>
+        <Action class='phrase__action' onclick={refreshPhrase}>rephraso!</Action>
         <Action class='phrase__action' href={getUrl('home')}>return to categories</Action>
       </div>
     </div>
