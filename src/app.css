@@ -1,9 +1,17 @@
-h1,h2,h3,h4,h5,h6,ul,ol{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol {
   margin: 0;
   padding: 0;
 }
 
-ol,ul {
+ol,
+ul {
   list-style: none;
 }
 
@@ -42,7 +50,10 @@ body {
   padding: 0;
 }
 
-html, body, #app, #storybook-root {
+html,
+body,
+#app,
+#storybook-root {
   height: 100%;
 }
 

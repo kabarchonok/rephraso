@@ -4,7 +4,7 @@ const config = {
   addons: [
     '@storybook/addon-svelte-csf',
     '@chromatic-com/storybook',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
   ],
   framework: {
     name: '@storybook/svelte-vite',
