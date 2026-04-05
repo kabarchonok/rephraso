@@ -8,9 +8,11 @@
   })
 
   const categories = [
-    { id: '1', name: 'Question' },
-    { id: '2', name: 'Suggestion' },
-    { id: '3', name: 'Clarify' },
+    { id: '1', name: 'Clarify', label: 'Ask for more detail' },
+    { id: '2', name: 'Agree', label: 'Express agreement' },
+    { id: '3', name: 'Disagree', label: 'Express disagreement' },
+    { id: '4', name: 'Stall', label: 'Buy yourself time' },
+    { id: '5', name: 'Ask', label: 'Ask a question' },
   ]
 </script>
 
