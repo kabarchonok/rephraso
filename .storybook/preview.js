@@ -1,3 +1,5 @@
+import AppDecorator from './AppDecorator.svelte'
+
 import '../src/app.css'
 
 /** @type { import('@storybook/svelte-vite').Preview } */
@@ -10,6 +12,7 @@ const preview = {
       },
     },
   },
+  decorators: [() => AppDecorator],
 }
 
 export default preview
