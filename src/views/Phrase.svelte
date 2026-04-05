@@ -69,10 +69,9 @@
       <div class='phrase__context'>{phrase.context}</div>
     </div>
 
-      <div class='phrase__actions'>
-        <Action class='phrase__action' onclick={refreshPhrase}>rephraso!</Action>
-        <Action class='phrase__action' href={getUrl('home')}>return to categories</Action>
-      </div>
+    <div class='phrase__actions'>
+      <Action class='phrase__action phrase__action_primary' onclick={refreshPhrase}>rephraso!</Action>
+      <Action class='phrase__action' href={getUrl('home')}>return to categories</Action>
     </div>
   {/if}
 </div>
@@ -83,20 +82,44 @@
         flex-direction: column;
         align-items: center;
 
-        height: 100%;
+      /*max-width: 340px;*/
+      height: 100%;
+      margin: 0 auto;
 
         text-align: center;
     }
 
     .phrase__category {
         font-size: 16px;
-        color: var(--color-text-muted);
     }
 
     .phrase__text {
-        max-width: 320px;
-        font-size: 26px;
-        font-weight: 600;
+        font-size: 30px;
+        font-weight: 500;
+      line-height: 36px;
+    }
+
+    .phrase :global(.phrase__listen) {
+      position: relative;
+
+      width: 22px;
+      height: 22px;
+      margin-top: 16px;
+
+      color: var(--color-text-secondary);
+    }
+
+    .phrase :global(.phrase__listen::before) {
+      content: '';
+      position: absolute;
+      inset: 0;
+      margin: -10px;
+    }
+
+    .phrase__context {
+      margin-top: 24px;
+      font-size: 16px;
+      color: var(--color-text-secondary);
     }
 
     .phrase :global(.phrase__listen) {
@@ -119,7 +142,6 @@
     .phrase__container {
         display: flex;
         flex-direction: column;
-        gap: 32px;
         align-items: center;
         justify-content: center;
 
@@ -129,7 +151,12 @@
     .phrase__actions {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        color: var(--color-text-secondary);
+        gap: 24px;
+        align-items: center;
+    }
+
+    .phrase :global(.phrase__action_primary) {
+      border-bottom: 1px solid currentColor;
+      font-size: 20px;
     }
 </style>
