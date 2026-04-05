@@ -71,5 +71,5 @@ body,
   box-sizing: border-box;
   max-width: 460px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
 }
