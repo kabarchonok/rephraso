@@ -6,11 +6,13 @@ import { router } from './router'
 
 interface Phrase {
   text: string
+  context?: string
 }
 
 export interface Category {
   id: string
   name: string
+  label: string
 
   phrases: Phrase[]
 }
@@ -25,6 +27,7 @@ export type RandomPhrase = {
   phraseIndex: number
 
   text: string
+  context?: string
 }
 
 // Weights per category, keyed by "categoryId". Value is a JSON array of numbers.
@@ -85,8 +88,8 @@ router.subscribe((route) => {
   }
 })
 
-export function fillState() {
-  $state.setKey('categories', categoriesMocks)
+export function fillState(categories?: Category[]) {
+  $state.setKey('categories', categories ?? categoriesMocks)
 }
 
 function getCategory(categoryId: string) {
@@ -98,7 +101,7 @@ function getWeights(categoryId: string, phraseCount: number): number[] {
   if (weights && weights.length === phraseCount) {
     return [...weights]
   }
-  return new Array(phraseCount).fill(1)
+  return Array.from({ length: phraseCount }).fill(1) as number[]
 }
 
 function weightedRandomIndex(weights: number[]): number {
@@ -153,6 +156,7 @@ export function getRandomPhrase(categoryId: string, skipIndex?: number): RandomP
     phraseIndex: index,
 
     text: category.phrases[index].text,
+    context: category.phrases[index].context,
   }
 }
 
